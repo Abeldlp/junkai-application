@@ -1,0 +1,35 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.2.0",
+        "@typescript-eslint/parser": "^5.2.0",
+        "axios": "^0.21",
+        "eslint": "^8.1.0",
+        "eslint-plugin-vue": "^8.0.3",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.4.4",
+        "vue-loader": "^16.8.2"
+    },
+    "dependencies": {
+        "@inertiajs/inertia": "^0.10.1",
+        "@inertiajs/inertia-vue3": "^0.5.2",
+        "@inertiajs/progress": "^0.2.6",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "feather-icons": "^4.28.0",
+        "path": "^0.12.7",
+        "vue": "^3.2.21",
+        "vue-feather": "^2.0.0-rc.1"
+    }
+}
