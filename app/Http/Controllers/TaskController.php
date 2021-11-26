@@ -14,7 +14,6 @@ class TaskController extends Controller
 
     public function create(SaveTaskRequest $saveTaskRequest)
     {
-        dd('We are in the controller');
         $validateData = $saveTaskRequest->validated();
         $this->interface->createNewTask($validateData);
     }

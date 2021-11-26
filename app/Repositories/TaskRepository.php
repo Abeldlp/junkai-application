@@ -14,8 +14,7 @@ class TaskRepository implements TaskInterface {
 
     public function createNewTask($requestData)
     {
-        dd('we are in the repository');
-        dd($requestData);
+        return Task::create($requestData);
     }
 
 }
