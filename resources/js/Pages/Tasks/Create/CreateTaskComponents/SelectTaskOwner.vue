@@ -41,3 +41,4 @@ export default defineComponent({
         }
     }
 })
+</script>

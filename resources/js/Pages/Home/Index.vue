@@ -1,5 +1,6 @@
 <template>
     <div>
+        <NavbarIndex/>
         <Tasks :tasks="tasks" />
     </div>
 </template>
@@ -7,6 +8,7 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue'
 import Tasks from './Components/Tasks.vue'
+import NavbarIndex from '../GlobalComponents/Navbar/NavbarIndex.vue'
 
 interface Task {
     id: number,
@@ -19,7 +21,8 @@ interface Task {
 export default defineComponent({
     name: 'HomeIndex',
     components: {
-        Tasks
+        Tasks,
+        NavbarIndex,
     },
     props: {
         tasks: {type: Array as () => Task[], required: true}

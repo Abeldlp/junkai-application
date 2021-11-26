@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('task_priority');
+            $table->boolean('completed')->default(false);
 
             $table->foreign('task_type_id')->references('id')->on('task_types')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('owner_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

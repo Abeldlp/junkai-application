@@ -1,5 +1,5 @@
 <?php
-
+//phpcs:disable
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'task_type_id',
+        'owner_id',
+        'created_by',
+        'task_priority'
+    ];
 
     public function owner()
     {
