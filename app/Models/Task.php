@@ -14,7 +14,8 @@ class Task extends Model
         'task_type_id',
         'owner_id',
         'created_by',
-        'task_priority'
+        'task_priority',
+        'completed'
     ];
 
     public function owner()

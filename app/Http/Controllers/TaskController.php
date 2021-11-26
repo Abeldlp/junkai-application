@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\TaskInterface;
 use App\Http\Requests\SaveTaskRequest;
+use App\Http\Requests\EditTaskRequest;
 
 class TaskController extends Controller
 {
@@ -16,5 +17,16 @@ class TaskController extends Controller
     {
         $validateData = $saveTaskRequest->validated();
         $this->interface->createNewTask($validateData);
+    }
+
+    public function edit($taskId, EditTaskRequest $saveTaskRequest)
+    {
+        $validateData = $saveTaskRequest->validated();
+        $this->interface->editTask($taskId, $validateData);
+    }
+
+    public function destroy($taskId)
+    {
+        $this->interface->deleteTask($taskId);
     }
 }

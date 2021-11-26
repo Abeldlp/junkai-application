@@ -14,7 +14,16 @@ class TaskRepository implements TaskInterface {
 
     public function createNewTask($requestData)
     {
-        return Task::create($requestData);
+        return $this->task->create($requestData);
     }
 
+    public function editTask($taskId, $requestData)
+    {
+        return $this->task->find($taskId)->update($requestData);
+    }
+
+    public function deleteTask($taskId)
+    {
+        return $this->task->find($taskId)->delete();
+    }
 }

@@ -15,17 +15,14 @@ class TaskTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_can_save_tasks()
-    {
-        Task::factory()->create();
-
-        $this->assertDatabaseCount('tasks', 1);
+    public function test_it_can_get_tasks(){
+        Task::factory()->count(20)->create();
+        $collectionCount = Task::get()->toArray();
+        $this->assertEquals(20, count($collectionCount));
     }
 
-    public function test_it_can_post_and_save_tasks()
+    public function test_it_can_save_tasks()
     {
-        $this->withoutExceptionHandling();
-
         $type = TaskType::factory()->create();
         $prio = PriorityScale::factory()->create();
         $user = User::factory()->create();
@@ -45,5 +42,35 @@ class TaskTest extends TestCase
         $this->post('/tasks', $dataToSave);
         $lastTask = Task::orderBy('id', 'DESC')->first();
         $this->assertEquals($lastTask->owner->full_name, $user->full_name);
+    }
+
+    public function test_it_can_edit_tasks()
+    {
+        $task = Task::factory()->create();
+        Session::start();
+        $dataToUpdate = [
+            '_token' => csrf_token(),
+            'completed' => true,
+        ];
+
+        $this->assertFalse($task->completed);
+        $url = '/tasks/'.$task->id;
+        $this->put($url, $dataToUpdate);
+        $updatedTask = Task::find($task->id);
+        $this->assertEquals(1, $updatedTask->completed);
+    }
+
+    public function test_it_can_delete_tasks()
+    {
+        $this->withoutExceptionHandling();
+        $task = Task::factory()->create();
+
+        Session::start();
+
+        $url = '/tasks/'.$task->id;
+        $this->delete($url, ['_token' => csrf_token()]);
+
+        $deletedTask = Task::find($task->id);
+        $this->assertNull($deletedTask);
     }
 }
