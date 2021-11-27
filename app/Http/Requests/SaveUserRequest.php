@@ -1,5 +1,5 @@
 <?php
-
+//phpcs:disable
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,8 +25,9 @@ class SaveUserRequest extends FormRequest
     {
         return [
             'full_name' => 'string',
-            'email' => 'string',
+            'email' => 'string|unique:users',
             'password' => 'string',
+            'permission_id' => 'integer',
         ];
     }
 
@@ -35,7 +36,9 @@ class SaveUserRequest extends FormRequest
         return [
             'full_name.required' => '名前をご記入ください',
             'email.required' => 'メールアドレスをご記入ください',
+            'email.unique' => 'メールアドレス既に存在します',
             'password.required' => 'パスワードをご記入ください',
+            'permission_id.required' => 'ユーザには立場が必要です',
         ];
     }
 }

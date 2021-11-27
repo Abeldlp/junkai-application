@@ -13,6 +13,7 @@ class User extends Model
         'full_name',
         'email',
         'password',
+        'permission_id',
     ];
 
     public function tasks()
