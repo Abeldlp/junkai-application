@@ -11,39 +11,52 @@ class PriorityScaleTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_it_can_get_priorities(){
+        PriorityScale::factory()->count(20)->create();
+        $collectionCount = PriorityScale::get()->toArray();
+        $this->assertEquals(20, count($collectionCount));
+    }
+
     public function test_it_can_save_priority_scale()
     {
-        /* Session::start(); */
+        Session::start();
 
-        PriorityScale::factory()->create();
-        /* $dataToSave = [ */
-        /*     '_token' => csrf_token(), */
-        /*     'priority_name' => 'test' */
-        /* ]; */
+        $dataToSave = [
+            '_token' => csrf_token(),
+            'priority_name' => 'test'
+        ];
 
-        /* $this->post('/priorities', $dataToSave); */
+        $this->post('/priorities', $dataToSave);
 
         $this->assertDatabaseCount('priority_scales', 1);
 
-        //TODO: Add api endpoint
     }
 
     public function test_it_can_update_priority_scale()
     {
-        $newName = 'test';
-        $prio = PriorityScale::factory()->create();
-        $this->assertNotEquals($prio->priority_name, $newName);
-        $prio->update(['priority_name' => $newName]);
-        $this->assertEquals($newName, $prio->priority_name);
-        //TODO: Add api endpoint
+        Session::start();
+        $created = PriorityScale::factory()->create();
+        $dataToSave = [
+            '_token' => csrf_token(),
+            'priority_name' => 'test'
+        ];
+
+        $this->put('/priorities/' . $created->id, $dataToSave);
+        
+        PriorityScale::find($created->id)->update($dataToSave);
+        $this->assertEquals('test', PriorityScale::find($created->id)->priority_name);
+        
     }
 
     public function test_it_can_delete_priority_scale()
     {
         $prio = PriorityScale::factory()->create();
-        $this->assertDatabaseCount('priority_scales', 1);
-        $prio->delete();
-        $this->assertDatabaseCount('priority_scales', 0);
-        //TODO: Add api endpoint
+
+        Session::start();
+
+        $this->delete('/priorities/' . $prio->id, ['_token' => csrf_token()]);
+
+        $deletedPrio = PriorityScale::find($prio->id);
+        $this->assertNull($deletedPrio);
     }
 }

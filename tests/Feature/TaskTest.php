@@ -62,7 +62,6 @@ class TaskTest extends TestCase
 
     public function test_it_can_delete_tasks()
     {
-        $this->withoutExceptionHandling();
         $task = Task::factory()->create();
 
         Session::start();
