@@ -13,7 +13,9 @@
     style="
         font-family: 'Nunito', sans-serif;
         font-size: .875rem;
-        padding: 0 20px;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
     ">
     @inertia
   </body>

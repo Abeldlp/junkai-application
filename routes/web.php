@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ HomeController::class, 'index' ]);
+    Route::get('/login', [ HomeController::class, 'login' ]);
+    Route::get('/register', [ HomeController::class, 'register' ]);
 });
 
 Route::prefix('/tasks')->group(function () {

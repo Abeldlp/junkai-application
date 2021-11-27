@@ -1,38 +1,45 @@
 <template>
-    <div>
-        <NavbarIndex/>
-        <Tasks :tasks="tasks" />
+    <div class="login_body">
+        <Link href="/login" class="login_body_button">
+                ログイン
+        </Link>
+        <Link href="/register" class="login_body_button">
+                登録
+        </Link>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue'
-import Tasks from './Components/Tasks.vue'
-import NavbarIndex from '../GlobalComponents/Navbar/NavbarIndex.vue'
-
-interface Task {
-    id: number,
-    task_type_id: number,
-    owner_id: number,
-    created_by: number,
-    task_priority: number
-}
+import { defineComponent } from 'vue'
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
     name: 'HomeIndex',
     components: {
-        Tasks,
-        NavbarIndex,
-    },
-    props: {
-        tasks: {type: Array as () => Task[], required: true}
-    },
-    setup() {
-        const name: Ref<string> = ref('world')
-        return {
-            name
-        }
+        Link,
     },
 })
 </script>
 
+<style scoped>
+
+.login_body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgb(150,60,165);
+    background: linear-gradient(0deg, rgba(150,60,165,1) 0%, rgba(114,161,215,1) 100%);
+}
+
+.login_body_button {
+    color: black;
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    width: 70%;
+    border-radius: 5px;
+}
+
+</style>
