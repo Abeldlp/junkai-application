@@ -1,19 +1,29 @@
 <template>
     <div class="reqister_page">
         <p>name</p>
-        <input/>
+        <input v-model="registerData.full_name"/>
         <p>name</p>
-        <input/>
+        <input v-model="registerData.email"/>
         <p>name</p>
         <input/>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 
 export default defineComponent({
     name: 'RegisterPage',
+    setup(){
+        const registerData = reactive({
+            full_name: '',
+            email: '',
+        })
+
+        return {
+            registerData
+        }
+    }
 })
 </script>
 

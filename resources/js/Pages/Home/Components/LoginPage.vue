@@ -1,16 +1,27 @@
 <template>
     <div class="login_page">
         <p>email</p>
-        <input/>
+        <input v-model="loginData.em "/>
         <p>password</p>
         <input/>
     </div>
 </template>
 
-<script lang="ts"> import { defineComponent } from 'vue'
+<script lang="ts"> 
+import { defineComponent, reactive } from 'vue'
 
 export default defineComponent({
     name: 'LoginPage',
+    setup(){
+        const loginData = reactive({
+            email: '',
+            password: ''
+        })
+
+        return {
+            loginData
+        }
+    }
 })
 </script>
 

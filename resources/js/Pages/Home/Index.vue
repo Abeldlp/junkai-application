@@ -11,7 +11,6 @@
             <div @click="openLoginPage" class="login_body_button"> ログイン </div>
             <div @click="openRegisterPage" class="login_body_button"> 登録 </div>
         </div>
-
     </div>
 </template>
 
@@ -29,7 +28,6 @@ export default defineComponent({
         RegisterPage
     },
     setup(){
-
         const iconContainer = ref(null)
         const loginBody = ref(null)
 
