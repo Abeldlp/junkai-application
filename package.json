@@ -28,6 +28,7 @@
         "@inertiajs/progress": "^0.2.6",
         "browser-sync-webpack-plugin": "^2.3.0",
         "feather-icons": "^4.28.0",
+        "gsap": "^3.8.0",
         "path": "^0.12.7",
         "vue": "^3.2.23",
         "vue-feather": "^2.0.0-rc.1"

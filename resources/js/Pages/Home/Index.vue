@@ -1,9 +1,9 @@
 <template>
     <div class="login_body" >
-        <LoginPage :class="{page_open: loginPageOpen}"/>
-        <RegisterPage :class="{page_open: registerPageOpen }"/>
+        <LoginPage class="login_component"/>
+        <RegisterPage class="register_component"/>
 
-        <div ref="iconContainer" class="login_body_logo_container">
+        <div class="login_body_logo_container">
             <VueFeather type="codepen" class="login_body_logo" />
             <h3>巡回アプリ</h3>
         </div>
@@ -15,10 +15,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref } from 'vue'
+import { defineComponent } from 'vue'
 import VueFeather from 'vue-feather'
 import LoginPage from './Components/LoginPage.vue'
 import RegisterPage from './Components/RegisterPage.vue'
+import { gsap } from 'gsap'
 
 export default defineComponent({
     name: 'HomeIndex',
@@ -28,33 +29,21 @@ export default defineComponent({
         RegisterPage
     },
     setup(){
-        const iconContainer = ref(null)
-        const loginBody = ref(null)
-
-        const loginPageOpen: Ref<boolean> = ref(false)
-        const registerPageOpen: Ref<boolean> = ref(false)
-    
-        const openLoginPage = (): boolean => {
-            //@ts-ignore
-            iconContainer.value.style.transform = 'translateX(100%)'
-            //@ts-ignore
-            loginBody.value.style.transform = 'translateX(100%)'
-            return loginPageOpen.value = true
+        const openLoginPage = () => {
+            gsap.to('.login_body_button_container, .login_body_logo_container', {
+                opacity: 0, duration: 0.3, x: '100vw' 
+            })
+            gsap.to('.login_component', { duration: 0.3, x: '100%' })
         }
 
-        const openRegisterPage = (): boolean => {
-            //@ts-ignore
-            iconContainer.value.style.transform = 'translateX(100%)'
-            //@ts-ignore
-            loginBody.value.style.transform = 'translateX(100%)'
-            return registerPageOpen.value = true
+        const openRegisterPage = () => {
+            gsap.to('.login_body_button_container, .login_body_logo_container', {
+                opacity: 0, duration: 0.3, x: '100vw' 
+            })
+            gsap.to('.register_component', { duration: 0.3, x: '100%' })
         }
 
         return {
-            iconContainer,
-            loginBody,
-            loginPageOpen,
-            registerPageOpen,
             openLoginPage,
             openRegisterPage
         }
