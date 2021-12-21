@@ -14,6 +14,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->bindInterfaceToRepository('Task');
+        $this->bindInterfaceToRepository('TaskType');
         $this->bindInterfaceToRepository('PriorityScale');
         $this->bindInterfaceToRepository('User');
     }
